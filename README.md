@@ -1,30 +1,31 @@
-# React + TypeScript + Vite
+# Eviden Petshop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Eviden as a business has decided to enter the pet shop market. Being a
+digital-first company, they have decided to build a webshop before opening a
+physical store. They have hired you to build the webshop for them.
 
-Currently, two official plugins are available:
+## The goal
+Today you're pairing with someone with someone else to build features for the
+webshop. The goal isn't to finish all of the features listed below, but to
+emphasise quality and communication. Talk through your thought process, ask
+questions, outline trade-offs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## User stories
 
-## Expanding the ESLint configuration
+- As a user, I want to see a list of all available pets, so that I can choose
+  which one to buy.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- As a user, I want to see more details about a pet, so that I can decide to
+  purchase it.
 
-- Configure the top-level `parserOptions` property like this:
+- As an employee, I want to be able to add new pets to the shop, so that users
+  can buy them.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- As an employee, I want to be able to update pets in the shop, so that I can
+  change their details and status.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Feedback
+After the pairing session, we'd like to hear your thoughts on the shape of this
+interview. This interview is equally for you to see if you'd like to work with
+us, as it is for us to see if we'd like to work with you. We're always looking
+to improve our process, so any feedback is welcome.
