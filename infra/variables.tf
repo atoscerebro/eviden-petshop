@@ -22,5 +22,5 @@ variable "azurerm_postgresql_server" {
     ssl_enforcement_enabled          = bool
     ssl_minimal_tls_version_enforced = string
   })
-  description = "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server"
+  description = "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server"
 }
