@@ -13,6 +13,7 @@
 # Directories for Go workspace and build cache
 /vendor/
 /bin/
+tmp/
 
 # Go modules
 go.sum
