@@ -15,11 +15,16 @@ import (
 func main() {
 	var err error
 	// Load configuration
-	config.LoadConfig()
+	cfg, err := config.LoadConfig()
+	if err != nil {
+		log.Fatalf("Failed to load configuration: %v", err)
+	}
+
+	// Create database if it doesn't exist
+	db.CreateDatabase(cfg)
 
 	// Initialize the database connection
-	dsn := config.AppConfig.DatabaseURI
-	database, err := db.InitDB(dsn)
+	database, err := db.InitDB(cfg)
 	if err != nil {
 		log.Fatalf("Failed to initialize database: %v", err)
 	}
@@ -40,7 +45,7 @@ func main() {
 	api.SetupRoutes(router, petsService)
 
 	// Start the server on port 4000
-	port := config.AppConfig.Port
+	port := cfg.ServicePort
 
 	log.Printf("Starting server on port %s...", port)
 
