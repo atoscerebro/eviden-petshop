@@ -9,7 +9,11 @@ import (
 
 // Migrate runs the database migrations
 func Migrate(db *gorm.DB) {
-	err := db.AutoMigrate(&models.Pet{})
+	err := db.AutoMigrate(
+		&models.Pet{},
+		&models.Tag{},
+		// &models.PetTag{},
+	)
 	if err != nil {
 		log.Fatalf("Failed to migrate database: %v", err)
 	}

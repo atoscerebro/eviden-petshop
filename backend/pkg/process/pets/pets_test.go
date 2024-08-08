@@ -6,6 +6,7 @@ import (
 	"github.com/atoscerebro/eviden-petshop/pkg/models"
 	"github.com/atoscerebro/eviden-petshop/pkg/process/pets"
 	"github.com/atoscerebro/eviden-petshop/test/mocks"
+	"github.com/lib/pq"
 )
 
 func TestCreatePet(t *testing.T) {
@@ -14,7 +15,10 @@ func TestCreatePet(t *testing.T) {
 	}
 	petsService := pets.Pets{DB: mockDB}
 
-	newPet := &models.Pet{Name: "Doggie"}
+	newPet := &models.Pet{
+		Name:      "Doggie",
+		PhotoUrls: pq.StringArray{"http://example.com/1.jpg", "http://example.com/2.jpg"},
+	}
 	err := petsService.CreatePet(newPet)
 	if err != nil {
 		t.Errorf("expected no error, got %v", err)
