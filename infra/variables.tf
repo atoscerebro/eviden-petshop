@@ -33,10 +33,10 @@ variable "azurerm_postgresql_server" {
 
 variable "jumpboxvm" {
   type = object({
-    vm_size                     = string
-    storage_image_reference_sku = string
-    os_profile_admin_username   = string
-    ssh_keys_path               = string
+    vm_size                    = string
+    source_image_reference_sku = string
+    admin_username             = string
+    admin_ssh_key_public_key   = string
   })
   description = "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine"
 }

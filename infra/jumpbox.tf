@@ -12,38 +12,31 @@ resource "azurerm_network_interface" "jumpbox_nic" {
   }
 }
 
-resource "azurerm_virtual_machine" "jumpbox_vm" {
-  name                  = "${var.name}-jumpboxvm"
-  location              = var.location
-  resource_group_name   = azurerm_resource_group.petshop_rg.name
-  network_interface_ids = [azurerm_network_interface.jumpbox_nic.id]
-  vm_size               = var.jumpboxvm.vm_size
+resource "azurerm_linux_virtual_machine" "jumpbox_vm" {
+  name                = "${var.name}-jb"
+  resource_group_name = azurerm_resource_group.petshop_rg.name
+  location            = var.location
+  size                = var.jumpboxvm.vm_size
+  admin_username      = var.jumpboxvm.admin_username
+  network_interface_ids = [
+    azurerm_network_interface.jumpbox_nic.id,
+  ]
 
-  storage_os_disk {
-    name              = "${var.name}-osdisk"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
+  admin_ssh_key {
+    username   = var.jumpboxvm.admin_username
+    public_key = file(var.jumpboxvm.admin_ssh_key_public_key)
   }
 
-  storage_image_reference {
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
     publisher = "Canonical"
     offer     = "0001-com-ubuntu-server-jammy"
-    sku       = var.jumpboxvm.storage_image_reference_sku
+    sku       = var.jumpboxvm.source_image_reference_sku
     version   = "latest"
-  }
-
-  os_profile {
-    computer_name  = "${var.name}-jumpboxvm"
-    admin_username = var.jumpboxvm.os_profile_admin_username
-  }
-
-  os_profile_linux_config {
-    disable_password_authentication = true
-    ssh_keys {
-      path     = "/home/${var.jumpboxvm.os_profile_admin_username}/.ssh/authorized_keys"
-      key_data = file(var.jumpboxvm.ssh_keys_path)
-    }
   }
 }
 
