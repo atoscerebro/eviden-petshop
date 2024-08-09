@@ -18,6 +18,7 @@ other services or tools, now is the time to share! We're always looking for new
 - Output should be added for ease of access to deployment info
 - Versioning to make it compatible with previous deployments
 - Use a Service Principal or Managed Idenity to connect to Azure
+- Container app needs Azure Pipeline setup in order to build and push images to the registry
 
 ### For local development 
 open a ssh tunnel through bastion host
