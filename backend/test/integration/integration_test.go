@@ -20,7 +20,6 @@ import (
 )
 
 var router *chi.Mux
-var database *db.Database
 
 // TestMain is the entry point for testing. It sets up the environment before tests run.
 func TestMain(m *testing.M) {
