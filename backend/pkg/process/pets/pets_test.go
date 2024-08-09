@@ -59,3 +59,30 @@ func TestGetAllPets(t *testing.T) {
 		t.Errorf("expected pet name MockPet2, got %s", result[1].Name)
 	}
 }
+
+func TestCreatePet_EdgeCases(t *testing.T) {
+	mockDB := &mocks.MockDB{
+		Pets: []models.Pet{},
+	}
+	petsService := pets.Pets{DB: mockDB}
+
+	// 1. Test creating a pet with an empty name
+	petWithEmptyName := &models.Pet{
+		Name:      "",
+		PhotoUrls: pq.StringArray{"http://randompic.com/1.jpg"},
+	}
+	err := petsService.CreatePet(petWithEmptyName)
+	if err == nil {
+		t.Errorf("expected error when creating pet with empty name, got nil")
+	}
+
+	// 2. Test creating a pet with empty photo URL
+	petWithInvalidURL := &models.Pet{
+		Name:      "Fluffy",
+		PhotoUrls: nil,
+	}
+	err = petsService.CreatePet(petWithInvalidURL)
+	if err == nil {
+		t.Errorf("expected error when creating pet with invalid photo URL, got nil")
+	}
+}
